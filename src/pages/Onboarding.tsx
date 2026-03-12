@@ -1,8 +1,18 @@
+import { useAuth } from "../context/authContext";
+import { RedirectToSignIn, SignedIn } from "@neondatabase/neon-js/auth/react";
 
 const Onboarding = () => {
-  return (
-    <div>Onboarding</div>
-  )
-}
+  const { user } = useAuth();
 
-export default Onboarding
+  if (!user) {
+    return <RedirectToSignIn />;
+  }
+
+  return (
+    <SignedIn>
+      <div>Onboarding</div>
+    </SignedIn>
+  );
+};
+
+export default Onboarding;
